@@ -1,0 +1,85 @@
+class Screen 
+{
+	static boolean color;
+	static Array screen;
+
+	function void init()
+	{
+		let color = false;
+		let screen = 16384;
+	}
+
+	function void clearScreen()
+	{
+		let i = 0;
+		while (i < 8192)
+		{
+			let screen[i] = false;
+		}
+	}
+
+	function void setColor(boolean b)
+	{
+		let color = b;
+	}
+
+	function void drawPixel(int x, int y)
+	{
+		let address = (32 * y) + (x / 16);
+		let value = Memory.peek(16384 + address);
+		if (color)
+		{
+			let value = value | 1;
+		}
+		else
+		{
+			let value = value & 0
+		}
+		do Memory.poke(address, value);
+	}
+
+	function void drawLine(int x1, int y1, int x2, int y2)
+	{
+		let x = x1;
+		let y = y1;
+		let dx = x2 - x1;
+		let dy = y2 - y1;
+		let a = 0;
+		let b = 0;
+		let diff = 0;
+		while (~(a > dx) and ~(b > dy))
+		{
+			do Screen.drawPixel(x+a, y+b);
+			if(diff < 0)
+			{
+				let a = a + 1;
+				let diff = diff + dy;
+			}
+			else
+			{
+				let b = b + 1;
+				let diff = diff - dx;
+			}
+		}
+	}
+
+	function void drawRectangle(int x1, int y1, int x2, int y2)
+	{
+		let int i = y1;
+		while(i < y2 | i = y2)
+		{
+			do Screen.drawLine(x1, i, x2, i);
+			let i = i + 1;
+		}
+	}
+
+	function void drawCircle(int x, int y, int r)
+	{
+		let dy = -1 * r;
+		while(dy < r)
+		{
+			let temp = Math.sqrt(r*r - dy*dy);
+			do Screen.drawLine(x-temp, y+dy, x+temp, y+dy);
+		}
+	}
+}

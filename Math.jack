@@ -1,0 +1,102 @@
+class Math 
+{
+	static Array twoToThe;
+
+	function void init()
+	{
+		let twoToThe = Array.new(16);
+		let twoToThe[0] = 1;
+		let twoToThe[1] = 2;
+		let twoToThe[2] = 4;
+		let twoToThe[3] = 8;
+		let twoToThe[4] = 16;
+		let twoToThe[5] = 32;
+		let twoToThe[6] = 64;
+		let twoToThe[7] = 128;
+		let twoToThe[8] = 256;
+		let twoToThe[9] = 512;
+		let twoToThe[10] = 1024;
+		let twoToThe[11] = 2048;
+		let twoToThe[12] = 4096;
+		let twoToThe[13] = 8192;
+		let twoToThe[14] = 16384;
+		let twoToThe[15] = 16384*2;
+	}
+
+	function int abs(int x)
+	{
+		let y = x;
+		if (x < 0)
+		{
+			let y = x * -1;
+		}
+		return y;
+	}
+
+	function int multiply(int x, int y)
+	{
+		let i = 0;
+		let sum = 0;
+		while (i < y) 
+		{
+			let sum = sum + x;
+			let i = i + 1;
+		}
+		return sum;
+	}
+
+	function int divide(ind x, int y)
+	{
+		let div = 0;
+		let rem = x;
+		while (rem < x | rem = x) 
+		{
+			let rem = rem - y;
+			let div = div + 1;
+		}
+		return div;
+	}
+
+	function int min(int x, int y)
+	{
+		if(y < x)
+		{
+			return y;
+		}
+		else
+		{
+			return x;
+		}
+	}
+
+	function int max(int x, int y)
+	{
+		if(y > x)
+		{
+			return y;
+		}
+		else
+		{
+			return x;
+		}
+	}
+
+	function int sqrt(int x)
+	{
+		let y = 0;
+		let j = 7; //16 bits / 2 - 1 = 7
+		while (j > 0 | j = 0)
+		{
+			//(y+2^j)
+			let guess = y + twoToThe[j];
+			//(y+2^j)^2
+			let expResult = guess * guess;
+			if (guess < x | guess = x)
+			{
+				let y = guess;
+			}
+			let j = j - 1;
+		}
+		return y;
+	}
+}

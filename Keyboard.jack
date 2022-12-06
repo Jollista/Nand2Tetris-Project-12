@@ -1,0 +1,83 @@
+class Keyboard
+{
+	function char keyPressed()
+	{
+		let code = Memory.peek(24576);	//get code
+		if (code > 31 & code < 153)
+		{
+			return code;	//return key code if within bounds
+		}
+		return 0;	//else return 0
+	}
+	
+	function char readChar()
+	{
+		display cursor
+		while (Keyboard.keyPressed() = 0)
+		{
+			//do nothing
+		}
+		let c = Keyboard.keyPressed();
+		while(~(Keyboard.keyPressed() = 0))
+		{
+			//do nothing
+		}
+		do Output.printChar(c);
+	}
+	
+	function String readLine(String message)
+	{
+		do Output.printString(message);
+		
+		String str;
+		while (0 = 0)
+		{
+			c = Keyboard.readChar();
+			if (c = 128) //if c = newline
+			{
+				do Output.println();
+				return str;
+			}
+			//else
+			if (c = 129) //if c = backspace
+			{
+				do str.eraseLastChar();
+				do Output.backspace();
+			}
+			else 
+			{
+				let str = str.append(c);
+			}
+		}
+	}
+	
+	function int readInt(String message)
+	{
+		do Output.printString(message);
+		
+		let i = 0;
+		while (0 = 0)
+		{
+			c = Keyboard.readChar();
+			if (c = 128) //if c = newline
+			{
+				do Output.println();
+				return i;
+			}
+			//else
+			if (c = 129) //if c = backspace
+			{
+				let i = i / 10;
+				do Output.backspace();
+			}
+			else
+			{
+				if (c > 57 | c < 48) //non numeric
+				{
+					return i;
+				}
+				let i = i * 10 + (c - 48); //add new digit
+			}
+		}
+	}
+}
